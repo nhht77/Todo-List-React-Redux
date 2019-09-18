@@ -6,14 +6,14 @@ export default class Header extends Component {
     this.state = { value: '' }
   }
 
-  onKeyPress( event ) {
+  onKeyPress = ( event ) => {
     if( event.charCode === 13 ) {
       this.props.addTodo( this.state.value )
       this.setState({ value: '' })
     }
   }
 
-  onChange( event ) {
+  onChange = ( event ) => {
     this.setState({ value: event.target.value })
   }
 
@@ -24,8 +24,8 @@ export default class Header extends Component {
         <input className="new-todo" 
           placeholder="What needs to be done?"
           value={this.state.value}
-          onKeyPress={this.onKeyPress.bind(this)}
-          onChange={this.onChange.bind(this)} />
+          onKeyPress={this.onKeyPress}
+          onChange={this.onChange} />
       </header>
     )
   }

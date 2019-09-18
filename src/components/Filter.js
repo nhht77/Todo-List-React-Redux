@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Filter extends Component {
-  filter( event ) {
+  filter = ( event ) => {
     event.preventDefault()
 
     this.props.changeFilter( this.props.selection )
@@ -12,7 +12,7 @@ export default class Filter extends Component {
     const className = selection === currentFilter ? 'selected' : ''
 
     return (
-      <a href="#" onClick={this.filter.bind(this)} className={className}>
+      <a href="#" onClick={this.filter} className={className}>
         {this.props.children}
       </a>
     )

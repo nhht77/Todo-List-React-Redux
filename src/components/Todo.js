@@ -4,11 +4,11 @@ import { COMPLETED } from '../actions/todos'
 import EditableTitle from './EditableTitle'
 
 class Todo extends Component {
-  checkHandler() {
+  checkHandler = () => {
     this.props.toggleTodo( this.props.id )
   }
 
-  deleteHandler() {
+  deleteHandler = () => {
     this.props.deleteTodo( this.props.id )
   }
 
@@ -20,12 +20,12 @@ class Todo extends Component {
         <div className="view">
           <input className="toggle"
             type="checkbox"
-            onChange={this.checkHandler.bind(this)}
+            onChange={this.checkHandler}
             checked={this.props.status === COMPLETED} />
 
           <EditableTitle id={id} title={title} editTitle={editTitle} />
 
-          <button className="destroy" onClick={this.deleteHandler.bind(this)}></button>
+          <button className="destroy" onClick={this.deleteHandler}></button>
         </div>
       </li>
     )

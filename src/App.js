@@ -11,32 +11,32 @@ import {
 } from './actions/todos'
 
 class App extends Component {
-  createTodo( title ) {
-    this.props.dispatch( addTodo( title ) )
+  createTodo = ( title ) => {
+    this.props.addTodo(title)
   }
 
-  toggleTodo( id ) {
-    this.props.dispatch( toggleTodo( id ))
+  toggleTodo = ( id ) => {
+    this.props.toggleTodo( id )
   }
 
-  deleteTodo( id ) {
-    this.props.dispatch( deleteTodo( id ))
+  deleteTodo = ( id ) => {
+    this.props.deleteTodo( id )
   }
 
-  changeFilter( filter ) {
-    this.props.dispatch( changeFilter( filter ))
+  changeFilter = ( filter ) => {
+    this.props.changeFilter( filter )
   }
 
-  editTitle( id, title ) {
-    this.props.dispatch( editTitle( id, title ))
+  editTitle = ( id, title ) => {
+    this.props.editTitle( id, title )
   }
 
-  clearCompleted() {
-    this.props.dispatch( clearCompleted() )
+  clearCompleted = () => {
+    this.props.clearCompleted()
   }
 
-  toggleAll() {
-    this.props.dispatch( toggleAll() )
+  toggleAll = () => {
+    this.props.toggleAll()
   }
 
   render() {
@@ -48,22 +48,26 @@ class App extends Component {
     return (
       <div className="learn">
         <section className="todoapp">
-          <Header addTodo={this.createTodo.bind(this)} />
+          <Header addTodo={this.createTodo} />
 
           <TodoList todos={todos}
-            editTitle={this.editTitle.bind(this)}
-            toggleTodo={this.toggleTodo.bind(this)}
-            deleteTodo={this.deleteTodo.bind(this)}
-            toggleAll={this.toggleAll.bind(this)} />
+            editTitle={this.editTitle}
+            toggleTodo={this.toggleTodo}
+            deleteTodo={this.deleteTodo}
+            toggleAll={this.toggleAll} />
 
           <Footer count={todos.length}
-            clearCompleted={this.clearCompleted.bind(this)}
+            clearCompleted={this.clearCompleted}
             currentFilter={currentFilter}
-            changeFilter={this.changeFilter.bind(this)} />
+            changeFilter={this.changeFilter} />
         </section>
       </div>
     )
   }
 }
 
-export default connect( state => state )( App )
+const mapActionsToProps = {
+  addTodo, toggleTodo, deleteTodo, changeFilter, editTitle, clearCompleted, toggleAll
+}
+
+export default connect( state => state, mapActionsToProps )( App )

@@ -7,11 +7,11 @@ export default class EditableTitle extends Component {
     this.state = { editing: false, value: props.title }
   }
 
-  clickHandler() {
+  clickHandler = () => {
     this.setState({ editing: true })
   }
 
-  onKeyPress( event ) {
+  onKeyPress = ( event ) => {
     const { id, editTitle } = this.props
 
     if( event.charCode === 13 ) {
@@ -21,7 +21,7 @@ export default class EditableTitle extends Component {
     }
   }
 
-  onChange( event ) {
+  onChange = ( event ) => {
     this.setState({ value: event.target.value })
   }
 
@@ -32,11 +32,11 @@ export default class EditableTitle extends Component {
       return (
         <input className="edit"
           value={this.state.value}
-          onKeyPress={this.onKeyPress.bind(this)}
-          onChange={this.onChange.bind(this)} />
+          onKeyPress={this.onKeyPress}
+          onChange={this.onChange} />
       )
     } else {
-      return <label onClick={this.clickHandler.bind(this)}>{title}</label>
+      return <label onClick={this.clickHandler}>{title}</label>
     }
   }
 }

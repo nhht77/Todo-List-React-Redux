@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers/root'
 
 import App from './App'
@@ -24,7 +24,13 @@ const localStorage = ({ getState }) => next => action => {
 const localData = window.localStorage.getItem( DATABASE )
 const initialState = JSON.parse( localData ) || DEFAULT_STATE
 
-const store = createStore( reducer, initialState, applyMiddleware( localStorage ))
+const store = createStore( 
+  reducer, 
+  initialState, 
+  compose(
+    applyMiddleware(localStorage),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())  
+)
 
 ReactDOM.render(
   <Provider store={store}>
