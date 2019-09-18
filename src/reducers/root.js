@@ -1,5 +1,5 @@
 import {
-  ADD_TODO, TOGGLE_TODO, DELETE_TODO, CHANGE_FILTER, EDIT_TITLE, CLEAR_COMPLETED, TOGGLE_ALL
+  ADD_TODO, TOGGLE_TODO, DELETE_TODO, CHANGE_FILTER, EDIT_TITLE, CLEAR_COMPLETED, TOGGLE_ALL, ACTIVE
 } from '../actions/todos'
 
 import addTodo from './addTodo'
@@ -11,11 +11,16 @@ import clearCompleted from './clearCompleted'
 import toggleAll from './toggleAll'
 
 const root = (state, action) => {
-  console.log( action, state )
+  const { todos, nextId } = state;
+  const { title } = action;
 
   switch( action.type ) {
     case ADD_TODO:
-      return addTodo( state, action )
+      return {
+        ...state,
+        nextId: nextId + 1,
+        todos: [...todos, { id: nextId, title, status: ACTIVE }]
+      }
     case TOGGLE_TODO:
       return toggleTodo( state, action )
     case DELETE_TODO:
