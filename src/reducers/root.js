@@ -2,7 +2,6 @@ import {
   ADD_TODO, TOGGLE_TODO, DELETE_TODO, CHANGE_FILTER, EDIT_TITLE, CLEAR_COMPLETED, TOGGLE_ALL, ACTIVE
 } from '../actions/todos'
 
-import addTodo from './addTodo'
 import toggleTodo from './toggleTodo'
 import deleteTodo from './deleteTodo'
 import changeFilter from './changeFilter'
